@@ -1,0 +1,75 @@
+C86/OS
+
+A minimalistic 32-bit operating system written entirely in x86 assembly.
+
+FEATURES
+
+- Protected Mode (32-bit)
+- Preemptive multitasking (round-robin scheduler)
+- Text mode 80x50 (VGA)
+- Virtual File System (ramdisk)
+- Memory manager (kmalloc/kfree)
+- Custom shell
+
+DRIVERS
+
+- PS/2 Keyboard
+- PATA/IDE (read only)
+- PCI bus scanner
+- RTC (Real-Time Clock)
+- PC Speaker
+- Serial port (COM1)
+- RTL8139 (detection only)
+
+SHELL COMMANDS
+
+help      - Show available commands
+ls        - List files
+cat FILE  - Display file contents
+ps        - List running processes
+meminfo   - Show memory usage
+cpuinfo   - Display CPU information
+uname     - Show kernel version
+osfetch   - Display system info with ASCII art
+calc      - Simple calculator
+whoami    - Show current user
+date      - Display current date and time
+echo      - Print text to screen
+echo -com - Send text to COM1 port
+pci       - List PCI devices
+pata      - Detect PATA drives
+pata_size - Show disk size
+pata_chs  - Show CHS parameters
+beep      - Test PC speaker
+clear     - Clear screen
+reboot    - Reboot system
+
+BUILDING
+
+Requirements: FASM (Flat Assembler)
+
+fasm bootloader.asm bootloader.bin
+fasm kernel.asm kernel.bin
+
+CREATE BOOTABLE IMAGE
+
+dd if=/dev/zero of=floppy.img bs=512 count=2880
+dd if=bootloader.bin of=floppy.img conv=notrunc
+dd if=kernel.bin of=floppy.img bs=512 seek=1 conv=notrunc
+
+RUN
+
+qemu-system-i386 -fda floppy.img -vga std
+
+LICENSE
+
+BSD 3-Clause License
+
+Copyright (c) 2026 Alpeev Timofey. All rights reserved.
+
+See LICENSE file for full text.
+
+AUTHOR
+
+Alpeev Timofey
+GitHub: @yourusername

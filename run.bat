@@ -1,0 +1,1 @@
+"C:\Program Files\qemu\qemu-system-x86_64.exe" -vga std -machine pc -netdev user,id=net0 -device rtl8139,netdev=net0 -drive file=os.img,format=raw -serial tcp::4444,server,nowait
