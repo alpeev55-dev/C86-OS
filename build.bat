@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 
 echo [1/4] Setting up paths...
-set "FASM_PATH=C:\Users\User\Documents\FASM.EXE"Enter the path to FASM here
+set "FASM_PATH=fasm"Enter the path to FASM here
 set "BOOT_SRC=bootloader.asm"
 set "KERNEL_SRC=kernel.asm"
 set "BOOT_OUT=boot.bin"
