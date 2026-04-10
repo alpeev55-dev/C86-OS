@@ -57,22 +57,22 @@ process_input:
     mov edi, cmd_uname
     call compare_string
     jc do_uname
-
-    mov edi, cmd_ls
-    call compare_string
-    jc do_ls
-
+    
     mov edi, cmd_beep
     call compare_string
     jc do_beep
     
-    mov edi, cmd_cat
+    mov edi, cmd_fat32_ls
     call compare_string
-    jc do_cat
-    
-    mov edi, cmd_ps
+    jc fat32_ls_cmd
+
+    mov edi, cmd_fat32_cat
     call compare_string
-    jc do_ps
+    jc fat32_cat_cmd
+
+    mov edi, cmd_fat32_write
+    call compare_string
+    jc fat32_write_cmd
     
     mov edi, cmd_meminfo
     call compare_string
@@ -98,10 +98,22 @@ process_input:
     call compare_string
     jc do_pata_size
 
+    mov edi, cmd_floppy_info
+    call compare_string
+    jc do_floppy_info
+
+    mov edi, cmd_floppy_ls
+    call compare_string
+    jc do_floppy_ls
+
+    mov edi, cmd_floppy_format
+    call compare_string
+    jc do_floppy_format
+
     mov edi, cmd_pata_chs
     call compare_string
     jc do_pata_chs
-    
+
     jmp try_access_file
 
 do_date:

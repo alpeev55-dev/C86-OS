@@ -44,13 +44,14 @@ kernel_start:
     call print_string
 
     call init_pata
+    call init_fat32
+    call init_floppy
 
     call init_fs
     mov esi, line2
     call print_string
 
     call init_pci
-    call init_rtl8139
     mov esi, line5
     call print_string
     call init_rtc
@@ -88,8 +89,9 @@ include 'drivers\video.asm'
 include 'drivers\pci.asm'
 include 'drivers\serial.asm'
 include 'drivers\rtc.asm'
-include 'drivers\rtl8139.asm'
 include 'drivers\pata.asm'
+include 'drivers\fat32.asm'
+include 'drivers\floppy.asm'
 
 include 'shell.asm'
 include 'packages\calc.asm'

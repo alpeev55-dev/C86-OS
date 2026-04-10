@@ -406,7 +406,62 @@ do_pata_chs:
     mov esi, pata_no_drive_msg
     call print_string
     ret
-
+; ============================================
+; Write sector
+; IN: EAX = LBA, EDI = buffer
+; ============================================
+pata_write_sector:
+    pushad
+    
+    cmp byte [pata_ok], 1
+    jne .error
+    
+    call pata_wait_ready
+    
+    mov dx, PATA_DEV
+    mov al, 0xE0
+    mov ah, byte [esp + 28]
+    and ah, 0x0F
+    or al, ah
+    out dx, al
+    
+    mov dx, PATA_COUNT
+    mov al, 1
+    out dx, al
+    
+    mov eax, [esp + 28]
+    mov dx, PATA_LBA0
+    out dx, al
+    
+    mov dx, PATA_LBA1
+    mov al, ah
+    out dx, al
+    
+    mov dx, PATA_LBA2
+    shr eax, 16
+    out dx, al
+    
+    mov dx, PATA_CMD
+    mov al, 0x30           ; WRITE SECTORS
+    out dx, al
+    
+    call pata_wait_drq
+    
+    mov dx, PATA_DATA
+    mov esi, edi
+    mov ecx, 256
+    rep outsw
+    
+    call pata_wait_ready
+    
+    popad
+    clc
+    ret
+    
+.error:
+    popad
+    stc
+    ret
 ; ============================================
 ; Data
 ; ============================================

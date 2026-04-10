@@ -20,12 +20,12 @@
 | Driver        |          Status |
 |---------------|-----------------|
 | PS/2 Keyboard | Working         |
-| PATA/IDE      | Read only       |
+| PATA/IDE      | Working, FAT32  |
 | PCI Bus       | Scanner         |
-| RTC           | Real-Time Clock |
-| PC Speaker    | Beep support    |
+| Floppy        | Working, FAT12  |
+| RTC           | Working         |
+| PC Speaker    | Working         |
 | Serial (COM1) | TX only         |
-| RTL8139       | Detection only  |
 
 ---
 
@@ -47,7 +47,6 @@
 | Command      | Description |
 |--------------|-------------|
 | `ls`         | List files in ramdisk |
-| `cat <file>` | Display file contents |
 
 ### Hardware
 | Command | Description |

@@ -71,7 +71,12 @@ file_config:
 prompt_user db 0x0D,0x0A,0xDA,0xC4,0xC4,0xC4, 0
 prompt_at db '', 0
 prompt_end db 0x0D,0x0A,0xC0,0x1A,' ', 0
-
+cmd_floppy_info   db "floppy", 0
+cmd_floppy_ls     db "fls", 0
+cmd_floppy_format db "format", 0
+cmd_fat32_ls     db "ls", 0
+cmd_fat32_cat    db "cat", 0
+cmd_fat32_write  db "write", 0
 cmd_cpuinfo db 'cpuinfo', 0
 cmd_help db 'help', 0
 cmd_clear db 'clear', 0
