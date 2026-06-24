@@ -20,9 +20,9 @@
 | Driver        |          Status |
 |---------------|-----------------|
 | PS/2 Keyboard | Working         |
-| PATA/IDE      | Working, FAT32  |
+| PATA/IDE      | FAT32           |
 | PCI Bus       | Scanner         |
-| Floppy        | Working, FAT12  |
+| Floppy        | FAT12           |
 | RTC           | Working         |
 | PC Speaker    | Working         |
 | Serial (COM1) | TX only         |
